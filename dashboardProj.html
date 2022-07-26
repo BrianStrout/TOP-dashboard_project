@@ -32,6 +32,7 @@
             padding-right: 280px;
             background-color: #444444;
         }
+
         @media only screen and (max-width: 1600px){
             .padContainer{
             padding:0;
@@ -147,9 +148,11 @@
             display: grid;
             grid-column-start: 2;
             grid-column-end:6;
-            grid-template-columns: auto-fill 1fr;
+            grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr;
-            grid-auto-flow: column;
+           grid-template-areas: 
+           "projects feed"
+           ;
         }
        
         .projects{
@@ -158,21 +161,94 @@
             grid-template-columns: 1fr 1fr;
             padding-left: 1em;
             background-color: var(--grey);
+            grid-area: projects;
         }
+                                                                /* MEDIA */
 
-        @media only screen and (max-width: 1000px) {   
-          .projectFeedOrienter{
-          /* display: none; */
-          /* grid-column-start: 2;
-          grid-column-end:6;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto-fill 1fr;
-          grid-auto-flow: row; */
-      }
-      .projects{
+
+        @media only screen and (max-width: 1100px) {   
+         .container{
+            width: 100%;
+            height: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+                "top"
+                "dash"
+                "cont" ;
+         }
+            .centerTop{
+                grid-area: top;
+                flex-wrap: wrap;
+                margin-bottom: .25em;
+            }
+            .topBottom{
+                display: flex;
+                justify-content: center;
+          
+            }
+
+            .iconBot{
+                display: none;
+            }
+            #UNBot{
+                display: none;
+            }
+            .spacer{
+                display: none;
+            }
+
+
+            .leftBar{
+                grid-area:dash; 
+                padding-top: 0;  
+            }
+            .leftBar h1{
+                padding: .2em;
+            }
+            .leftBar li{
+                display: inline;
+            }
+
+            .projectFeedOrienter{
+                grid-area: cont;
+            grid-template-columns:1fr;
+            grid-template-rows: 1fr 1fr;
+           grid-template-areas: 
+           "projects"
+           "feed";
+            }
+
+            .projectTitle{
+               height: 2em;
+margin-bottom: -3em;
+            }
+            /* .projects:nth-last-child(1){
+                margin-top: 0;
+                background-color: #ffa413;
+            } */
+      /* .projects{
           background-color: hotpink;
-      }         
+      }          */
       }
+      @media only screen and (max-width: 790px){
+            .projects{
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            /* .projectTitle{
+                background-color: rgb(157, 228, 3);
+            } */
+            .centerTop,
+            .leftbar,
+            .projects,
+            .feed{
+                padding-left: .5em;
+                padding-right: .5em;
+            }
+        }
         .projectTitle{
             padding: 1em;
             grid-column-start: 1;
@@ -230,6 +306,7 @@
         .feed{
             padding: 0 1em 1em 1em;
             background-color:var(--grey);
+            grid-area: feed;
         }
         .feed > div{
             background-color: var(--white);
@@ -255,11 +332,24 @@
             grid-column-end: 4;
         }
 
-        /* @media only screen and (min-width: 2000px){
-            .container{
-                padding: 200px;
+        @media only screen and (max-width: 790px){
+            {
+                margin-left: .5em;
             }
-        } */
+            .projects{
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .projectTitle{
+            padding: 1em;
+            grid-column-start: 1;
+            grid-column-end: 2;
+        }
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -289,8 +379,8 @@
                     <img class="iconshot" src="headshot.jpeg" alt="icon">User Name
                 </div>
                 <div class="topControls topBottom" > 
-                    <img class="iconshot" src="headshot.jpeg" alt="icon">
-                    @UserName
+                    <img class="iconshot iconBot" src="headshot.jpeg" alt="icon">
+                    <span id="UNBot">@UserName</span>
                     <div class="spacer"> </div>
                     <div class="topBotBut">
                     <button class="blueButton">New</button>
